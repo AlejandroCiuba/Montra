@@ -14363,11 +14363,11 @@ MonoBehaviour:
   m_AssetsPPU: 32
   m_RefResolutionX: 950
   m_RefResolutionY: 540
-  m_UpscaleRT: 1
+  m_UpscaleRT: 0
   m_PixelSnapping: 1
   m_CropFrameX: 0
   m_CropFrameY: 0
-  m_StretchFill: 0
+  m_StretchFill: 1
 --- !u!1001 &2898100946443840618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14375,6 +14375,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2898100945650381296, guid: 345e2acbb30737d4f8907f9c991033ce, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5094655021982653246, guid: 49ecd43adaa7bb64d82c752657893025, type: 3}
     - target: {fileID: 2898100945650381297, guid: 345e2acbb30737d4f8907f9c991033ce, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -14445,11 +14449,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2898100945650381298, guid: 345e2acbb30737d4f8907f9c991033ce, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.8125
+      value: 1.03125
       objectReference: {fileID: 0}
     - target: {fileID: 2898100945650381298, guid: 345e2acbb30737d4f8907f9c991033ce, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 2.03125
+      value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: 2898100945650381299, guid: 345e2acbb30737d4f8907f9c991033ce, type: 3}
       propertyPath: m_Mass
@@ -14487,6 +14491,10 @@ PrefabInstance:
       propertyPath: fallMultiplier
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 2898100945650381302, guid: 345e2acbb30737d4f8907f9c991033ce, type: 3}
+      propertyPath: heads.Array.data[0]
+      value: 
+      objectReference: {fileID: -4380494521951243042, guid: 49ecd43adaa7bb64d82c752657893025, type: 3}
     - target: {fileID: 2898100945650381309, guid: 345e2acbb30737d4f8907f9c991033ce, type: 3}
       propertyPath: m_Name
       value: Player
@@ -14499,6 +14507,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.55
       objectReference: {fileID: 0}
+    - target: {fileID: 2898100946205346021, guid: 345e2acbb30737d4f8907f9c991033ce, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4380494521951243042, guid: 49ecd43adaa7bb64d82c752657893025, type: 3}
     - target: {fileID: 2898100946780647293, guid: 345e2acbb30737d4f8907f9c991033ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.015
@@ -14522,7 +14534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6403653101825202466, guid: cbe81e6ce3386bb43bc0ee5565e7eb65, type: 3}
       propertyPath: orthographic size
-      value: 10
+      value: 8.765625
       objectReference: {fileID: 0}
     - target: {fileID: 6403653101825202466, guid: cbe81e6ce3386bb43bc0ee5565e7eb65, type: 3}
       propertyPath: m_NormalizedViewPortRect.x

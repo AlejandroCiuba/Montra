@@ -103,7 +103,7 @@ public class PlayerMovement : MonoBehaviour //All Unity Scripts inherit from a c
             head.sprite = heads[0];
         }
 
-        if(movement.y != 0 && !IsGrounded()) anim.SetBool("isJumping", true);
-        else anim.SetBool("isJumping", false);
+        if(!IsGrounded()) anim.SetBool("isJumping", true);
+        else if(IsGrounded()) anim.SetBool("isJumping", false);
     }
 }
