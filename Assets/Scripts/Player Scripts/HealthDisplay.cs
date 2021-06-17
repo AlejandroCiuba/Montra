@@ -43,7 +43,7 @@ public class HealthDisplay : MonoBehaviour, HealthInterface
         health.name = "Health " + num; //Object's name
         health.GetComponent<RectTransform>().SetParent(this.GetComponent<RectTransform>(), false);
         //anchoredPosition is the position relative to its parent
-        health.GetComponent<RectTransform>().anchoredPosition = new Vector2(healthPosition.x + ((float)(num * 133)), healthPosition.y);
+        health.GetComponent<RectTransform>().anchoredPosition = new Vector2(healthPosition.x + ((float)(num * 27)), healthPosition.y);
         health.tag = "Health";
         if(!display) health.GetComponent<Image>().enabled = false;
         else health.GetComponent<Image>().sprite = healthImage;

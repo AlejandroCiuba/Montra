@@ -73,7 +73,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -133,10 +133,10 @@ TextureImporter:
       name: Gem_0
       rect:
         serializedVersion: 2
-        x: 205
-        y: 122
-        width: 67
-        height: 12
+        x: 465
+        y: 176
+        width: 13
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,10 +154,10 @@ TextureImporter:
       name: Gem_1
       rect:
         serializedVersion: 2
-        x: 288
-        y: 122
-        width: 64
-        height: 12
+        x: 496
+        y: 160
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,9 +175,9 @@ TextureImporter:
       name: Gem_2
       rect:
         serializedVersion: 2
-        x: 368
+        x: 125
         y: 122
-        width: 69
+        width: 67
         height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -196,6 +196,48 @@ TextureImporter:
       name: Gem_3
       rect:
         serializedVersion: 2
+        x: 208
+        y: 122
+        width: 64
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 720e348cd41764e40800000000000000
+      internalID: 5640320162214436903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gem_4
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 122
+        width: 69
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65cbce43ef94ecd60800000000000000
+      internalID: 7912342951494990934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gem_5
+      rect:
+        serializedVersion: 2
         x: 448
         y: 123
         width: 69
@@ -207,8 +249,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 720e348cd41764e40800000000000000
-      internalID: 5640320162214436903
+      spriteID: a44a571974769c180800000000000000
+      internalID: -9094624415417260982
       vertices: []
       indices: 
       edges: []
