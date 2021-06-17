@@ -6,8 +6,9 @@ public class PlayerMovement : MonoBehaviour //All Unity Scripts inherit from a c
     void Update() 
     {
         AnimationControl();
-        if(IsGrounded() && Input.GetKeyDown(KeyCode.Space)) Jump();//Activates jump
-        if(jumpTimeCounter > 0 && Input.GetKey(KeyCode.Space) && isJumping) VarJump(); //Controls height based on how long the player holds space
+        canJump = IsGrounded();
+        if(canJump && Input.GetKeyDown(KeyCode.Space)) {Jump(); canJump = false;}//Activates jump
+        if(jumpTimeCounter > 0 && Input.GetKey(KeyCode.Space) && isJumping) {VarJump(); canJump = false;} //Controls height based on how long the player holds space
         if(Input.GetKeyUp(KeyCode.Space)) isJumping = false; //Variable jump height modified from BlackThornProd Tutorial
     }
 
@@ -35,6 +36,10 @@ public class PlayerMovement : MonoBehaviour //All Unity Scripts inherit from a c
     [SerializeField] private Vector3 jumpBounds;
     private float jumpTimeCounter;
     private bool isJumping;
+
+    [SerializeField] private bool canJump = true;
+    [SerializeField] private float jumpForgive = .2f;
+    private float jumpForgiveCounter;
     //How much quicker the player starts falling once they start
     //coming down from a jump
     [SerializeField] private float fallMultiplier = 2.5f;
@@ -68,9 +73,12 @@ public class PlayerMovement : MonoBehaviour //All Unity Scripts inherit from a c
     }
 
     private bool IsGrounded() 
-    {
-        return Physics2D.BoxCast(pcol.bounds.center, pcol.bounds.size + jumpBounds, 0f,
-        Vector2.down, checkGround, jumpLayer).collider != null;
+    {   
+        RaycastHit2D check = Physics2D.BoxCast(pcol.bounds.center, pcol.bounds.size + jumpBounds, 0f,
+        Vector2.down, checkGround, jumpLayer);
+        if(check.collider != null) {jumpForgiveCounter = jumpForgive; return true;}
+        else if(check.collider == null && jumpForgiveCounter > 0) {jumpForgiveCounter -= Time.deltaTime; return true;}
+        else return false;
     }
 
     //Once the player starts coming down from a jump, make them fall faster

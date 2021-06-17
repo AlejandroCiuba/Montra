@@ -13394,7 +13394,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2898100945650381299, guid: 345e2acbb30737d4f8907f9c991033ce, type: 3}
       propertyPath: m_GravityScale
-      value: 15
+      value: 12.2
       objectReference: {fileID: 0}
     - target: {fileID: 2898100945650381302, guid: 345e2acbb30737d4f8907f9c991033ce, type: 3}
       propertyPath: prb
@@ -13418,11 +13418,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2898100945650381302, guid: 345e2acbb30737d4f8907f9c991033ce, type: 3}
       propertyPath: checkGround
-      value: 1.5
+      value: 1.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898100945650381302, guid: 345e2acbb30737d4f8907f9c991033ce, type: 3}
+      propertyPath: jumpForgive
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 2898100945650381302, guid: 345e2acbb30737d4f8907f9c991033ce, type: 3}
       propertyPath: fallMultiplier
-      value: 0.1
+      value: 1.58
       objectReference: {fileID: 0}
     - target: {fileID: 2898100945650381302, guid: 345e2acbb30737d4f8907f9c991033ce, type: 3}
       propertyPath: heads.Array.data[0]
