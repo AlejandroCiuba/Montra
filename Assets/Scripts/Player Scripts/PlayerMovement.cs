@@ -6,11 +6,10 @@ public class PlayerMovement : MonoBehaviour //All Unity Scripts inherit from a c
     void Update() 
     {
         AnimationControl();
-        IsGrounded();
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded) Jump();
+        if(Input.GetKeyDown(KeyCode.Space) && IsGrounded()) Jump();
         if(Input.GetKey(KeyCode.Space) && jumpCounter > 0 && isJumping) VarJump();
-        if(Input.GetKeyUp(KeyCode.Space)) jumpCounter = 0;
-        UnityEngine.Debug.Log(isGrounded + " " + isJumping);
+        if(Input.GetKeyUp(KeyCode.Space)) isJumping = false;
+        UnityEngine.Debug.Log(IsGrounded() + " " + isJumping);
     }
 
     //FixedUpdate is called consistently regardless of FPS (every .02 seconds per gametime)
@@ -32,8 +31,9 @@ public class PlayerMovement : MonoBehaviour //All Unity Scripts inherit from a c
     [SerializeField] private float jumpHeight = 10f;
     [SerializeField] private float forgive = .1f; private float forgiveCounter;
     [SerializeField] private float jumpTime; private float jumpCounter;
-    private bool isGrounded; private bool isJumping;
+    private bool isJumping;
     [SerializeField] private float speed = 1000f;
+    [SerializeField] private float fall;
     //The 2 dimensional vector which tracks the players x and y movement
     private Vector2 movement;
     
@@ -48,36 +48,26 @@ public class PlayerMovement : MonoBehaviour //All Unity Scripts inherit from a c
 
     private void Jump()
     {
-        prb.velocity += jumpHeight * Vector2.up;
         isJumping = true;
+        jumpCounter = jumpTime;
+        prb.velocity = new Vector2(prb.velocity.x, 0f);
+        prb.angularVelocity = 0f;
+        prb.velocity = jumpHeight * Vector2.up;
     }
 
     private void VarJump()
     {
-        prb.velocity += Vector2.up * .25f;
+        prb.velocity = Vector2.up * .75f * jumpHeight;
         jumpCounter -= Time.deltaTime;
     }
 
-    private void IsGrounded() 
-    {   
-        RaycastHit2D ray = Physics2D.BoxCast(pcol.bounds.center, pcol.bounds.size, 0f, Vector2.down, 1f, jumpLayer);
-        if(ray.collider != null) {
-            isGrounded = true;
-            if(Input.GetKey(KeyCode.Space)) isJumping = true;
-            else isJumping = false;
-            forgiveCounter = forgive;
-        }
-        else if(ray.collider == null && !isJumping && forgiveCounter > 0) {
-            isGrounded = true;
-            forgiveCounter -= Time.deltaTime;
-        }
-        else isGrounded = false;
-    }
+    private bool IsGrounded() {return Physics2D.BoxCast(pcol.bounds.center, pcol.bounds.size, 0f, Vector2.down, 1f, jumpLayer).collider != null;}
 
     //Once the player starts coming down from a jump, make them fall faster
     private void Fall() 
     {
-        prb.velocity += new Vector2(prb.velocity.x, Physics2D.gravity.y * Time.deltaTime);
+        if(prb.velocity.y < 0f) 
+            prb.velocity += Vector2.up * Physics.gravity.y * (fall - 1) * Time.deltaTime;
     }
 
 //================== Animation Controls ==================
@@ -91,7 +81,7 @@ public class PlayerMovement : MonoBehaviour //All Unity Scripts inherit from a c
         if(movement.x == -1) {player.flipX = true; head.flipX = true;}
         else if(movement.x == 1) {player.flipX = false; head.flipX = false;}
 
-        if(movement.x != 0 && isGrounded) {
+        if(movement.x != 0 && IsGrounded()) {
             anim.SetBool("isRunning", true);
             head.sprite = heads[1];
 
@@ -103,7 +93,7 @@ public class PlayerMovement : MonoBehaviour //All Unity Scripts inherit from a c
             head.sprite = heads[0];
         }
 
-        if(!isGrounded) anim.SetBool("isJumping", true);
-        else if(isGrounded) anim.SetBool("isJumping", false);
+        if(!IsGrounded()) anim.SetBool("isJumping", true);
+        else if(IsGrounded()) anim.SetBool("isJumping", false);
     }
 }
