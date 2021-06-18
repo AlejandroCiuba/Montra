@@ -5,8 +5,8 @@ public class PlayerMovement : MonoBehaviour //All Unity Scripts inherit from a c
     //Update is called once per frame
     void Update() 
     {
-        AnimationControl();
-        if(IsGrounded() && Input.GetKeyDown(KeyCode.Space)) Jump();
+        canJump = IsGrounded();
+        if(canJump && Input.GetKeyDown(KeyCode.Space)) Jump();
         if(jCount > 0 && Input.GetKey(KeyCode.Space) && isJumping) VarJump();
         if(Input.GetKeyUp(KeyCode.Space)) isJumping = false;
     }
@@ -20,6 +20,12 @@ public class PlayerMovement : MonoBehaviour //All Unity Scripts inherit from a c
         Fall();
     }
 
+    void LateUpdate()
+    {
+        AnimationControl();
+        canJump = IsGrounded();
+    }
+
     //================== Movement Controls ==================
     //Player's RigidBody Component
     //[SerializeField] means we can see that variable in the editor and assign it values/objects there
@@ -27,10 +33,10 @@ public class PlayerMovement : MonoBehaviour //All Unity Scripts inherit from a c
     //Player's Collider Component (Any 2D Shape)
     [SerializeField] private Collider2D pcol;
     [SerializeField] private float speed = 1000f;
-    [SerializeField] private LayerMask jumpLayer;
+    [SerializeField] private LayerMask jumpLayer; [SerializeField] private Vector3 increase;
     [SerializeField] private float jump; [SerializeField] private float fall;
     [SerializeField] private float jumpTime; private float jCount;
-    private bool isJumping;
+    private bool isJumping; private bool canJump;
     //The 2 dimensional vector which tracks the players x and y movement
     private Vector2 movement;
     
@@ -56,7 +62,7 @@ public class PlayerMovement : MonoBehaviour //All Unity Scripts inherit from a c
         jCount -= Time.deltaTime;
     }
 
-    private bool IsGrounded() {return Physics2D.BoxCast(pcol.bounds.center, pcol.bounds.size, 0f, Vector2.down, .3f, jumpLayer).collider != null;}
+    private bool IsGrounded() {return Physics2D.BoxCast(pcol.bounds.center, pcol.bounds.size + increase, 0f, Vector2.down, .3f, jumpLayer).collider != null;}
 
     //Once the player starts coming down from a jump, make them fall faster
     private void Fall() 
