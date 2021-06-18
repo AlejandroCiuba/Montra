@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour //All Unity Scripts inherit from a c
     {
         AnimationControl();
         if(IsGrounded() && Input.GetKeyDown(KeyCode.Space)) Jump();
+        if(jCount > 0 && Input.GetKey(KeyCode.Space) && isJumping) VarJump();
+        if(Input.GetKeyUp(KeyCode.Space)) isJumping = false;
     }
 
     //FixedUpdate is called consistently regardless of FPS (every .02 seconds per gametime)
@@ -27,6 +29,8 @@ public class PlayerMovement : MonoBehaviour //All Unity Scripts inherit from a c
     [SerializeField] private float speed = 1000f;
     [SerializeField] private LayerMask jumpLayer;
     [SerializeField] private float jump; [SerializeField] private float fall;
+    [SerializeField] private float jumpTime; private float jCount;
+    private bool isJumping;
     //The 2 dimensional vector which tracks the players x and y movement
     private Vector2 movement;
     
@@ -41,11 +45,15 @@ public class PlayerMovement : MonoBehaviour //All Unity Scripts inherit from a c
 
     private void Jump() 
     {
-        prb.velocity = Vector2.up * jump;
+        prb.velocity = Vector2.up * Mathf.Sqrt(jump);
+        isJumping = true;
+        jCount = jumpTime;
     }
 
     private void VarJump()
     {
+        prb.velocity = Vector2.up * jump * .75f;
+        jCount -= Time.deltaTime;
     }
 
     private bool IsGrounded() {return Physics2D.BoxCast(pcol.bounds.center, pcol.bounds.size, 0f, Vector2.down, .3f, jumpLayer).collider != null;}
