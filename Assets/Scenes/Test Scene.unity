@@ -15949,12 +15949,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3201958401673637064, guid: 00c76d72081c5804ea428b15ab7b61a6, type: 3}
+      propertyPath: jump
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 3201958401673637064, guid: 00c76d72081c5804ea428b15ab7b61a6, type: 3}
+      propertyPath: speed
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 3201958401673637064, guid: 00c76d72081c5804ea428b15ab7b61a6, type: 3}
       propertyPath: jumpTime
-      value: 0.7
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3201958401673637064, guid: 00c76d72081c5804ea428b15ab7b61a6, type: 3}
       propertyPath: jumpHeight
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3201958401673637064, guid: 00c76d72081c5804ea428b15ab7b61a6, type: 3}
+      propertyPath: jumpVector.y
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3389179489554234114, guid: 00c76d72081c5804ea428b15ab7b61a6, type: 3}
       propertyPath: m_RootOrder
@@ -16004,6 +16016,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3389179489554234124, guid: 00c76d72081c5804ea428b15ab7b61a6, type: 3}
+      propertyPath: m_GravityScale
+      value: 12.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00c76d72081c5804ea428b15ab7b61a6, type: 3}
 --- !u!1001 &5089314374666971510
@@ -16016,6 +16032,34 @@ PrefabInstance:
     - target: {fileID: 1438634498362543295, guid: 6bdd1839ff354ad43ae75044cf43438f, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2667760954520505015, guid: 6bdd1839ff354ad43ae75044cf43438f, type: 3}
+      propertyPath: m_BiasY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2667760954520505015, guid: 6bdd1839ff354ad43ae75044cf43438f, type: 3}
+      propertyPath: m_XDamping
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2667760954520505015, guid: 6bdd1839ff354ad43ae75044cf43438f, type: 3}
+      propertyPath: m_YDamping
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2667760954520505015, guid: 6bdd1839ff354ad43ae75044cf43438f, type: 3}
+      propertyPath: m_DeadZoneWidth
+      value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 2667760954520505015, guid: 6bdd1839ff354ad43ae75044cf43438f, type: 3}
+      propertyPath: m_LookaheadTime
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 2667760954520505015, guid: 6bdd1839ff354ad43ae75044cf43438f, type: 3}
+      propertyPath: m_DeadZoneHeight
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2667760954520505015, guid: 6bdd1839ff354ad43ae75044cf43438f, type: 3}
+      propertyPath: m_LookaheadSmoothing
+      value: 1.9
       objectReference: {fileID: 0}
     - target: {fileID: 4117305737072259714, guid: 6bdd1839ff354ad43ae75044cf43438f, type: 3}
       propertyPath: m_RootOrder
