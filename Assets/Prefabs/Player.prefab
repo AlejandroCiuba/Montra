@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 6139101303731822521}
   - component: {fileID: 3389179489554234124}
   - component: {fileID: 3389179489554234127}
-  - component: {fileID: 3201958401673637064}
+  - component: {fileID: 7636688939497603139}
   - component: {fileID: 6584779317469472356}
   m_Layer: 0
   m_Name: Player
@@ -282,7 +282,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0464602, y: 2.2510333}
   m_EdgeRadius: 0
---- !u!114 &3201958401673637064
+--- !u!114 &7636688939497603139
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -291,18 +291,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 3389179489554234120}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e9906333e31e594c8612ec072ad27a6, type: 3}
+  m_Script: {fileID: 11500000, guid: cdbec92a1721e6143930abcf3e80c95e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   prb: {fileID: 3389179489554234124}
-  pcol: {fileID: 3389179489554234127}
+  pcol: {fileID: 0}
   jumpLayer:
     serializedVersion: 2
-    m_Bits: 64
-  jumpHeight: 49
-  forgive: 0.05
-  jumpTime: 0.25
-  speed: 414.4
+    m_Bits: 0
+  speed: 0
+  jumpSpeed: 15
+  jumpDelay: 0.25
+  gravity: 1
+  fall: 5
+  onGround: 0
+  groundLength: 0.6
+  offset: {x: 0, y: 0, z: 0}
   anim: {fileID: 6584779317469472356}
   player: {fileID: 6139101303731822521}
   head: {fileID: 5798305285641211948}
