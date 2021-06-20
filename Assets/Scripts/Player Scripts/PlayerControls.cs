@@ -17,12 +17,14 @@ public class PlayerControls : MonoBehaviour
     void Update()
     {
         onGround = IsGrounded();
-        if(pressedJump && onGround) Jump();
+        if(pressedJump && (onGround || jumpTimer < jumpDelay)) Jump();
+        if(!onGround && !isJumping) jumpTimer += Time.deltaTime;
     }
     void FixedUpdate()  
     {
         Move();
         if(!onGround && prb.velocity.y < 0) pressedJump = false;
+        if(onGround && !pressedJump) {isJumping = false; jumpTimer = 0;}
         ModifyPhysics();
     }
 
@@ -48,6 +50,7 @@ public class PlayerControls : MonoBehaviour
     [Header("Physics Variable")]
     [SerializeField] private float gravity = 1f;
     [SerializeField] private float fall = 5f;
+    [SerializeField] private bool isJumping;
     [SerializeField] private bool onGround;
     [SerializeField] private float groundLength = 0.6f;
     [SerializeField] private Vector3 offset;
@@ -59,7 +62,8 @@ public class PlayerControls : MonoBehaviour
     {
         prb.velocity = new Vector2(prb.velocity.x, 0);
         prb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
-        jumpTimer = 0;
+        jumpTimer = jumpDelay;
+        isJumping = true;
     }
     private bool IsGrounded() {return Physics2D.BoxCast(pcol.bounds.center, pcol.bounds.size + offset, 0f, Vector2.down, groundLength, jumpLayer).collider != null;}
     private void ModifyPhysics()
@@ -68,7 +72,8 @@ public class PlayerControls : MonoBehaviour
         else {
             prb.gravityScale = gravity;
             if(prb.velocity.y < 0) prb.gravityScale = gravity * fall;
-            else if(prb.velocity.y > 0 && !pressedJump) prb.gravityScale = gravity * (fall / 2);
+            else if(prb.velocity.y > 0 && !pressedJump) prb.gravityScale = gravity * (fall / 1.25f);
+            else if(prb.velocity.y > 0 && pressedJump) prb.gravityScale = gravity * (fall / 2f);
         }
     }
     //======= ANIMATION COMPONENTS =======
