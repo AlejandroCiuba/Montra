@@ -1,7 +1,7 @@
 using UnityEngine; //Mandatory
 using UnityEngine.InputSystem;
 using System.Collections;
-public class PlayerMovement : MonoBehaviour //All Unity Scripts inherit from a certain group of Objects, MonoBehaviour is the most common
+/*public class PlayerMovement : MonoBehaviour //All Unity Scripts inherit from a certain group of Objects, MonoBehaviour is the most common
 {
     private PlayerController control;
     void Awake()
@@ -109,4 +109,4 @@ public class PlayerMovement : MonoBehaviour //All Unity Scripts inherit from a c
         if(!IsGrounded()) anim.SetBool("isJumping", true);
         else if(IsGrounded()) anim.SetBool("isJumping", false);
     }
-}
+}*/

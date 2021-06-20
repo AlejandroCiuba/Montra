@@ -18,8 +18,6 @@ public class HealthDisplay : MonoBehaviour, HealthInterface
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F)) AddHealth(1);
-        else if(Input.GetKeyDown(KeyCode.G)) RemoveHealth(1);
     }
 
     public void SetHealth() 
