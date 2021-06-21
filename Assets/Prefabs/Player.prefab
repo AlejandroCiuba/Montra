@@ -160,6 +160,7 @@ GameObject:
   - component: {fileID: 3389179489554234124}
   - component: {fileID: 3389179489554234127}
   - component: {fileID: 7636688939497603139}
+  - component: {fileID: 1610626408123393588}
   - component: {fileID: 6584779317469472356}
   m_Layer: 0
   m_Name: Player
@@ -304,6 +305,7 @@ MonoBehaviour:
   jumpDelay: 0.25
   gravity: 1
   fall: 5
+  isJumping: 0
   onGround: 0
   groundLength: 0.6
   offset: {x: 0, y: 0, z: 0}
@@ -313,6 +315,21 @@ MonoBehaviour:
   heads:
   - {fileID: -4380494521951243042, guid: 49ecd43adaa7bb64d82c752657893025, type: 3}
   - {fileID: 4217363639627444927, guid: a22b5be974a618743b9853f220a1c484, type: 3}
+--- !u!114 &1610626408123393588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389179489554234120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07439a492e491854fbffb256226d8300, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  display: {fileID: 0}
+  healthPoints: 5
+  maxHealth: 10
 --- !u!95 &6584779317469472356
 Animator:
   serializedVersion: 3

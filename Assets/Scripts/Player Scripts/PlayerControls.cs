@@ -43,7 +43,7 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float jumpSpeed = 15f;
     [SerializeField] private float jumpDelay = 0.25f;
-    [SerializeField] public bool enableControls{get; set;} = true;
+    [SerializeField] public bool enableControls = true;
     private float jumpTimer;
     [Header("Physics Variable")]
     [SerializeField] private float gravity = 1f;
