@@ -1,10 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthDisplay : MonoBehaviour, HealthInterface
+public class HealthDisplay : MonoBehaviour, IHealth
 {
+    [Header("Health Settings")]
     [SerializeField] private int healthPoints = 5;
     [SerializeField] private int maxHealth = 10;
+    [SerializeField] public bool invincible{get; set;} = false;
+
+    [Header("Health Display Options")]
     [SerializeField] private Vector2 healthPosition;
     [SerializeField] private GameObject healthTemplate;
     [SerializeField] private Sprite[] healthDisplay;
@@ -18,6 +22,11 @@ public class HealthDisplay : MonoBehaviour, HealthInterface
     // Update is called once per frame
     void Update()
     {
+    }
+
+    public int Health
+    {
+        get => healthPoints; 
     }
 
     public void SetHealth() 
@@ -50,7 +59,7 @@ public class HealthDisplay : MonoBehaviour, HealthInterface
 
     public void AddHealth(int healthIncrease)
     {
-        if(healthPoints == maxHealth) return; //Cannot add anymore health
+        if(healthPoints == maxHealth || invincible) return; //Cannot add anymore health
         if(healthPoints + healthIncrease >= maxHealth) healthPoints = maxHealth;
         else healthPoints += healthIncrease;
         for(int i = 0; i < healthPoints; i++) {
@@ -63,7 +72,7 @@ public class HealthDisplay : MonoBehaviour, HealthInterface
 
     public void RemoveHealth(int healthDecrease)
     {
-        if(healthPoints - healthDecrease <= 0) return; //TODO: Add lose condition
+        if(healthPoints - healthDecrease <= 0 || invincible) return; //TODO: Add lose condition
         healthPoints -= healthDecrease;
         for(int i = 0; i < healthPoints + healthDecrease; i++) {
             if(i == 0 && healthPoints != 1) health[i].GetComponent<Image>().sprite = healthDisplay[0];

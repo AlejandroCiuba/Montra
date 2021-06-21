@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -7,12 +6,10 @@ public class PlayerControls : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        pc = new PlayerController();
-        pc.Controls.Walk.performed += cxt => movement = (cxt.ReadValue<Vector2>().x >= 0)? Vector2.right : Vector2.left; 
-        pc.Controls.Walk.canceled += cxt => movement = Vector2.zero;
-        pc.Controls.Jump.started += cxt => pressedJump = true;
-        pc.Controls.Jump.canceled += cxt => pressedJump = false;
+        SetControls();
     }
+    void OnEnable() {pc.Controls.Enable();}
+    void OnDisable() {pc.Controls.Disable();}
 
     void Update()
     {
@@ -31,9 +28,9 @@ public class PlayerControls : MonoBehaviour
     void LateUpdate()
     {
         AnimationControls();
+        if(!enableControls) pc.Disable();
+        else if(enableControls) pc.Enable();
     }
-    void OnEnable() {pc.Controls.Enable();}
-    void OnDisable() {pc.Controls.Disable();}
 
     //======= MOVEMENT COMPONENTS =======
     [Header("Movement Components")]
@@ -46,12 +43,14 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float jumpSpeed = 15f;
     [SerializeField] private float jumpDelay = 0.25f;
+    [SerializeField] public bool enableControls{get; set;} = true;
     private float jumpTimer;
     [Header("Physics Variable")]
     [SerializeField] private float gravity = 1f;
     [SerializeField] private float fall = 5f;
     [SerializeField] private bool isJumping;
     [SerializeField] private bool onGround;
+    [Range(0f, 1f)]
     [SerializeField] private float groundLength = 0.6f;
     [SerializeField] private Vector3 offset;
     private bool pressedJump;
@@ -76,7 +75,17 @@ public class PlayerControls : MonoBehaviour
             else if(prb.velocity.y > 0 && pressedJump) prb.gravityScale = gravity * (fall / 2f);
         }
     }
+
+    private void SetControls() 
+    {
+        pc = new PlayerController();
+        pc.Controls.Walk.performed += cxt => movement = (cxt.ReadValue<Vector2>().x >= 0)? Vector2.right : Vector2.left; 
+        pc.Controls.Walk.canceled += cxt => movement = Vector2.zero;
+        pc.Controls.Jump.started += cxt => pressedJump = true;
+        pc.Controls.Jump.canceled += cxt => pressedJump = false;
+    }
     //======= ANIMATION COMPONENTS =======
+    [Space]
     [Header("Animation Components")]
     [SerializeField] private Animator anim;
     [SerializeField] private SpriteRenderer player;
@@ -88,7 +97,7 @@ public class PlayerControls : MonoBehaviour
         if(movement.x == -1) {player.flipX = true; head.flipX = true;}
         else if(movement.x == 1) {player.flipX = false; head.flipX = false;}
 
-        if(movement.x != 0 && IsGrounded()) {
+        if(movement.x != 0 && (IsGrounded() || jumpTimer < jumpDelay)) {
             anim.SetBool("isRunning", true);
             head.sprite = heads[1];
 
@@ -100,7 +109,7 @@ public class PlayerControls : MonoBehaviour
             head.sprite = heads[0];
         }
 
-        if(!IsGrounded()) anim.SetBool("isJumping", true);
+        if(!IsGrounded() && jumpTimer >= jumpDelay) anim.SetBool("isJumping", true);
         else if(IsGrounded()) anim.SetBool("isJumping", false);
     }
 
