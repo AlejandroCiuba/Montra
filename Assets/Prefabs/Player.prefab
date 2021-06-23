@@ -78,7 +78,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.625, y: 0.75}
+  m_Size: {x: 0.46875, y: 0.75}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -230,7 +230,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.46875, y: 0.75}
+  m_Size: {x: 0.5, y: 0.75}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -274,8 +274,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.03125, y: 2.25}
-    newSize: {x: 0.46875, y: 0.75}
+    oldSize: {x: 0.5, y: 0.75}
+    newSize: {x: 0.5, y: 0.75}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -303,6 +303,7 @@ MonoBehaviour:
   speed: 0
   jumpSpeed: 15
   jumpDelay: 0.25
+  enableControls: 1
   gravity: 1
   fall: 5
   isJumping: 0
@@ -330,6 +331,7 @@ MonoBehaviour:
   display: {fileID: 0}
   healthPoints: 5
   maxHealth: 10
+  invincible: 0
 --- !u!95 &6584779317469472356
 Animator:
   serializedVersion: 3

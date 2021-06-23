@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -91,6 +92,7 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] private SpriteRenderer player;
     [SerializeField] private SpriteRenderer head;
     [SerializeField] private Sprite[] heads;
+    private bool blink = false;
 
     private void AnimationControls()
     {
@@ -111,6 +113,18 @@ public class PlayerControls : MonoBehaviour
 
         if(!IsGrounded() && jumpTimer >= jumpDelay) anim.SetBool("isJumping", true);
         else if(IsGrounded()) anim.SetBool("isJumping", false);
+
+        //Blinking
+        var ran = new System.Random();
+        if(!anim.GetBool("IsRunning") && ran.NextDouble() > .75f && !blink) StartCoroutine(Blink());
+    }
+
+    IEnumerator Blink()
+    {
+        blink = true;
+        head.sprite = heads[2];
+        yield return new WaitForSeconds(.75f);
+        blink = false;
     }
 
     //======= VISUALIZATION FUNCTIONS =======

@@ -169,8 +169,8 @@ TextureImporter:
       name: WalkCycle_1
       rect:
         serializedVersion: 2
-        x: 46
-        y: 219
+        x: 47
+        y: 200
         width: 12
         height: 24
       alignment: 0
