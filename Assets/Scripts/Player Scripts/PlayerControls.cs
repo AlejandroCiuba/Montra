@@ -15,7 +15,7 @@ public class PlayerControls : MonoBehaviour
     void Update()
     {
         onGround = IsGrounded();
-        if(pressedJump && (onGround || jumpTimer < jumpDelay)) Jump();
+        if(pressedJump && (onGround || jumpTimer < jumpDelay) && !isJumping) Jump();
         if(!onGround && !isJumping) jumpTimer += Time.deltaTime;
     }
     void FixedUpdate()  
